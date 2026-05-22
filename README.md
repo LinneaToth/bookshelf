@@ -1,6 +1,6 @@
 ## Stack
 
-ASP.NET Core w C# for backend (API), mySQL as DB. Vanilla React, Tailwind, TS for frontend.
+ASP.NET Core Minimal API w C# for backend, DB tbd. Vanilla React, Tailwind, TS for frontend.
 
 ## Endpoints
 
