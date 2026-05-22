@@ -1,6 +1,30 @@
-@backend_HostAddress = http://localhost:5298
+@backend_HostAddress = http://localhost:5193
 
-GET {{backend_HostAddress}}/weatherforecast/
+###
+GET {{backend_HostAddress}}/
 Accept: application/json
+
+###
+GET {{backend_HostAddress}}/api/books
+Accept: application/json
+
+###
+GET {{backend_HostAddress}}/api/books/1
+Accept: application/json
+
+###
+POST {{backend_HostAddress}}/api/books
+Content-Type: application/json
+
+{
+    "id": 2,
+    "title": "sdfsdgsg",
+    "author": "sdgsdgsdg",
+    "isRead": false,
+    "startDate": null,
+    "finishedDate": null,
+    "rating": 2
+}
+
 
 ###

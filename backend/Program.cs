@@ -1,27 +1,39 @@
-var builder = WebApplication.CreateBuilder(args); //args come from anything entered in the command line when running the app w dotnet run, for instance --environment Production
+using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http.HttpResults;
 
-builder.Configuration.GetConnectionString("DefaultConnection");
-
-// Add services to the container.
-// builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-// builder.Services.AddOpenApi();
+var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
 
-// // Configure the HTTP request pipeline.
-// if (app.Environment.IsDevelopment())
-// {
-//     app.MapOpenApi();
-// }
+var books = new List<Book>();
 
-// app.UseHttpsRedirection();
+app.MapGet("/", () =>
+{
+    return "Welcome to the bookshelf";
+})
+.WithName("Home");
 
-// app.UseAuthorization();
+app.MapGet("/api/books", () =>
+{
+    return TypedResults.Ok(books);
+})
+.WithName("GetAllBooks");
 
-// app.MapControllers();
+app.MapGet("/api/books/{id}", Results<Ok<Book>, NotFound> (int id) =>
+{
+    var targetBook = books.SingleOrDefault(book => id == book.Id);
+    return targetBook is null ? TypedResults.NotFound() : TypedResults.Ok(targetBook);
+})
+.WithName("GetBookById");
 
 
-app.MapGet("/",() => "HELLO THERE, HI FROM BOOK SHELF");
+app.MapPost("/api/books", (Book book) =>
+{
+    books.Add(book);
+     return TypedResults.Created($"books/{book.Id}", book);
+})
+.WithName("PostBook");
 
 app.Run();
+
+public record Book(int Id, string Title, string Author, bool isRead, DateOnly? StartDate, DateOnly? FinishedDate, [Range (1,10)] int Rating);
