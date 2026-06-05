@@ -28,3 +28,5 @@ Content-Type: application/json
 
 
 ###
+DELETE {{backend_HostAddress}}/api/books/2
+Accept: application/json
