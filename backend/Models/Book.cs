@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore;
 
 namespace backend.Models;
 
@@ -13,5 +12,5 @@ public class Book
     public DateOnly? FinishedDate { get; set; }
 
     [Range(1, 10)]
-    public int Rating { get; set; }
+    public int? Rating { get; set; }
 }

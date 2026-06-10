@@ -9,7 +9,7 @@ GET {{backend_HostAddress}}/api/books
 Accept: application/json
 
 ###
-GET {{backend_HostAddress}}/api/books/1
+GET {{backend_HostAddress}}/api/books/10
 Accept: application/json
 
 ###
@@ -17,16 +17,18 @@ POST {{backend_HostAddress}}/api/books
 Content-Type: application/json
 
 {
-    "id": 2,
-    "title": "sdfsdgsg",
-    "author": "sdgsdgsdg",
-    "isRead": false,
-    "startDate": null,
-    "finishedDate": null,
-    "rating": 2
+    "title": "The pragmatic programmer",
+    "author": "Andrew Hunt and David Thomas"
 }
 
+###
+PUT {{backend_HostAddress}}/api/books/22
+Content-Type: application/json
+
+{
+  "author": "Susanna Clarke",
+}
 
 ###
-DELETE {{backend_HostAddress}}/api/books/2
+DELETE {{backend_HostAddress}}/api/books/4
 Accept: application/json
