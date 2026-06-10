@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import "./App.css";
 import { getAllBooks, deleteBook } from "./api/bookApi";
 import type { Book } from "./types/types";
 import BookCard from "./components/BookCard";
