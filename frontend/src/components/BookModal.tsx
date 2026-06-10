@@ -1,6 +1,6 @@
 type Props = {
   closeModal: () => void;
-  content: "add" | "edit";
+  content?: "add" | "edit";
   bookId?: number;
 };
 
