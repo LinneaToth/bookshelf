@@ -17,7 +17,30 @@ The main purpose of this project is to get acquainted with C#. Coming from a Typ
 - [PostgreSQL](https://www.postgresql.org/download/) running locally on port 5432
 - The EF Core CLI tool: `dotnet tool install --global dotnet-ef`
 
-## Getting started
+## API
+
+| Method | Route             | Description                |
+| ------ | ----------------- | -------------------------- |
+| GET    | `/`               | Returns a greeting message |
+| GET    | `/api/books`      | List all books             |
+| POST   | `/api/books`      | Add a book                 |
+| GET    | `/api/books/{id}` | Find a book by id          |
+| PUT    | `/api/books/{id}` | Update a book              |
+| DELETE | `/api/books/{id}` | Remove a book              |
+
+### The Book model
+
+| Field          | Type         |                        |
+| -------------- | ------------ | ---------------------- |
+| `id`           | int          | Assigned by the server |
+| `title`        | string       | Required               |
+| `author`       | string       | Required               |
+| `bookRead`     | boolean      |                        |
+| `startDate`    | Date or null |                        |
+| `finishedDate` | Date or null |                        |
+| `rating`       | int or null  | 1 to 10                |
+
+## Try it out
 
 ### 1. Database
 
@@ -64,26 +87,3 @@ npm run dev
 ```
 
 Vite serves the app on `http://localhost:5173`. The frontend expects the backend on port 5193, so both need to be running.
-
-## API
-
-| Method | Route             | Description                |
-| ------ | ----------------- | -------------------------- |
-| GET    | `/`               | Returns a greeting message |
-| GET    | `/api/books`      | List all books             |
-| POST   | `/api/books`      | Add a book                 |
-| GET    | `/api/books/{id}` | Find a book by id          |
-| PUT    | `/api/books/{id}` | Update a book              |
-| DELETE | `/api/books/{id}` | Remove a book              |
-
-### The Book model
-
-| Field          | Type         |                        |
-| -------------- | ------------ | ---------------------- |
-| `id`           | int          | Assigned by the server |
-| `title`        | string       | Required               |
-| `author`       | string       | Required               |
-| `bookRead`     | boolean      |                        |
-| `startDate`    | Date or null |                        |
-| `finishedDate` | Date or null |                        |
-| `rating`       | int or null  | 1 to 10                |
