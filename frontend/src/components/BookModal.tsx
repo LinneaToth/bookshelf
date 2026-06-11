@@ -11,7 +11,13 @@ export default function BookModal({ closeModal, content = "add" }: Props) {
     const formData = new FormData(e.currentTarget);
     const bookData = {
       title: formData.get("title"),
+      author: formData.get("author") || undefined,
       bookRead: formData.get("book-read") === "true",
+      startDate: formData.get("start-date") || undefined,
+      finishedDate: formData.get("finished-date") || undefined,
+      rating: formData.get("rating")
+        ? Number(formData.get("rating"))
+        : undefined,
     };
 
     const url = "http://localhost:5193/api/books";
@@ -38,7 +44,7 @@ export default function BookModal({ closeModal, content = "add" }: Props) {
     <div
       id="book-modal"
       aria-hidden="true"
-      className="absolute overflow-y-auto overflow-x-hidden z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-gray-700/20 flex align-middle justify-center">
+      className="absolute overflow-y-auto overflow-x-hidden z-50 items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-gray-700/20 flex align-middle justify-center">
       <div className="relative p-4 w-full max-w-md max-h-full">
         <div className="relative bg-neutral-primary-soft border border-default rounded-base shadow-sm p-4 md:p-6 bg-white">
           <div className="flex items-center justify-between border-b border-default pb-4 md:pb-5">
@@ -82,16 +88,75 @@ export default function BookModal({ closeModal, content = "add" }: Props) {
                 id="title"
                 name="title"
                 className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                placeholder="The adventurous little dustbunny"
+                placeholder="The Adventurous Little Dustbunny"
                 required
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                htmlFor="author"
+                className="block mb-2.5 text-sm font-medium text-heading">
+                Author
+              </label>
+              <input
+                type="text"
+                id="author"
+                name="author"
+                className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                placeholder="Scrub Mommy"
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-4 mb-4">
+              <div>
+                <label
+                  htmlFor="start-date"
+                  className="block mb-2.5 text-sm font-medium text-heading">
+                  Started reading
+                </label>
+                <input
+                  type="date"
+                  id="start-date"
+                  name="start-date"
+                  className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="finished-date"
+                  className="block mb-2.5 text-sm font-medium text-heading">
+                  Finished reading
+                </label>
+                <input
+                  type="date"
+                  id="finished-date"
+                  name="finished-date"
+                  className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs"
+                />
+              </div>
+            </div>
+            <div className="mb-4">
+              <label
+                htmlFor="rating"
+                className="block mb-2.5 text-sm font-medium text-heading">
+                Rating (1–10)
+              </label>
+              <input
+                type="number"
+                id="rating"
+                name="rating"
+                min="1"
+                max="10"
+                className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                placeholder="8"
               />
             </div>
             <div className="flex items-start my-6">
               <div className="flex items-center">
                 <input
                   id="book-read"
+                  name="book-read"
                   type="checkbox"
-                  value=""
+                  value="true"
                   className="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft"
                 />
                 <label
