@@ -4,6 +4,8 @@ A personal bookshelf application for keeping track of books.
 
 The main purpose of this project is to get acquainted with C#. Coming from a TypeScript background with some Node experience, I chose ASP.NET Core Minimal API as a first touchdown since its syntax feels familiar from Express.
 
+Is it beautiful? Does it have a fancy interface? Is the code and the architecture clean and perfect? No! Am I happy with it? YES! I did what I pursued and have learned a lot along the way! 
+
 ## Stack
 
 - **Backend:** ASP.NET Core Minimal API (C#, .NET 10)
@@ -35,14 +37,14 @@ The main purpose of this project is to get acquainted with C#. Coming from a Typ
 | `id`           | int          | Assigned by the server |
 | `title`        | string       | Required               |
 | `author`       | string       | Required               |
-| `bookRead`     | boolean      |                        |
-| `startDate`    | Date or null |                        |
-| `finishedDate` | Date or null |                        |
-| `rating`       | int or null  | 1 to 10                |
+| `bookRead`     | bool         |                        |
+| `startDate`    | DateOnly?    |                        |
+| `finishedDate` | DateOnly?    |                        |
+| `rating`       | int?         | 1 to 10                |
 
-## Try it out
+## Try it out!
 
-### 1. Database
+### Database
 
 Create a PostgreSQL database named `bookshelf`, then create `backend/appsettings.Development.json` (it is gitignored, so each developer supplies their own):
 
@@ -67,7 +69,7 @@ cd backend
 dotnet ef database update
 ```
 
-### 2. Backend
+### Backend
 
 ```sh
 cd backend
@@ -76,7 +78,7 @@ dotnet run
 
 The API starts on `http://localhost:5193`.
 
-### 3. Frontend
+### Frontend
 
 In a separate terminal:
 
